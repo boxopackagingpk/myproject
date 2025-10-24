@@ -117,16 +117,13 @@ field_tag = ['dado_1', 'dado_2', 'dado_3', 'dado_n']
 
 csv_file.close()
 
+import random
 
-import requests
+def roll_dice(num_dice=3):
+    rolls = [random.randint(1, 6) for _ in range(num_dice)]
+    return rolls, sum(rolls)
 
-API_KEY = "your_api_key_here"
-city = "London"
+results, total = roll_dice()
+print("🎲 Rolls:", results, "| Total:", total)
 
-url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
-response = requests.get(url)
-data = response.json()
-
-print(f"Weather in {city}: {data['weather'][0]['description'].capitalize()}")
-print(f"Temperature: {data['main']['temp']}°C")
 
