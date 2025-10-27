@@ -81,39 +81,66 @@ for member in root:
                         if field.tag == '{' + ns2 + '}' + field_tag[count]:
                             data_line.append(field.text)
 
-response = requests.get("your_url", auth=HttpNtlmAuth('xxxx\\username','password'))
-tree =  ET.ElementTree(ET.fromstring(response.content))
-tree.write('file_name_xml.xml')
-root = tree.getroot()
+import json
 
-schema XML microsoft 
-ns0 = "http://www.w3.org/2005/Atom"
-ns1 = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
-ns2 = "http://schemas.microsoft.com/ado/2007/08/dataservices"
-schema XML microsoft 
-ns0 = "http://www.w3.org/2005/Atom"
-ns1 = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
-ns2 = "http://schemas.microsoft.com/ado/2007/08/dataservices"
+FILE = "todo_list.json"
 
-Create csv file 
-csv_file = open('file_name_csv.csv', 'w', newline = '', encoding='ansi')
-csvwriter = csv.writer(csv_file)
+def load_tasks():
+    try:
+        with open(FILE, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
 
-col_names = ['Col_1', 'Col_2', 'Col_3', 'Col_n']
-csvwriter.writerow(col_names)
+def save_tasks(tasks):
+    with open(FILE, "w") as f:
+        json.dump(tasks, f, indent=4)
 
-field_tag = ['dado_1', 'dado_2', 'dado_3', 'dado_n']
+def add_task():
+    task = input("Enter a new task: ")
+    tasks = load_tasks()
+    tasks.append({"task": task, "done": False})
+    save_tasks(tasks)
+    print(f"✅ '{task}' added.\n")
 
-Create csv file 
-csv_file = open('file_name_csv.csv', 'w', newline = '', encoding='ansi')
-csvwriter = csv.writer(csv_file)
+def view_tasks():
+    tasks = load_tasks()
+    if not tasks:
+        print("No tasks yet.\n")
+        return
+    for i, t in enumerate(tasks, 1):
+        status = "✅" if t["done"] else "❌"
+        print(f"{i}. {t['task']} [{status}]")
+    print()
 
-col_names = ['Col_1', 'Col_2', 'Col_3', 'Col_n']
-csvwriter.writerow(col_names)
+def mark_done():
+    tasks = load_tasks()
+    view_tasks()
+    num = int(input("Enter task number to mark done: ")) - 1
+    if 0 <= num < len(tasks):
+        tasks[num]["done"] = True
+        save_tasks(tasks)
+        print("Task marked as done!\n")
 
-field_tag = ['dado_1', 'dado_2', 'dado_3', 'dado_n']
+def main():
+    while True:
+        print("1. Add Task\n2. View Tasks\n3. Mark Done\n4. Exit")
+        choice = input("Choose: ")
 
-                csvwriter.writerow(data_line)
+        if choice == "1":
+            add_task()
+        elif choice == "2":
+            view_tasks()
+        elif choice == "3":
+            mark_done()
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice.\n")
+
+if __name__ == "__main__":
+    main()
 
 csv_file.close()
 
@@ -125,5 +152,6 @@ def roll_dice(num_dice=3):
 
 results, total = roll_dice()
 print("🎲 Rolls:", results, "| Total:", total)
+
 
 
