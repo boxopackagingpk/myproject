@@ -112,15 +112,19 @@ def view_tasks():
         status = "✅" if t["done"] else "❌"
         print(f"{i}. {t['task']} [{status}]")
     print()
+import time
 
-def mark_done():
-    tasks = load_tasks()
-    view_tasks()
-    num = int(input("Enter task number to mark done: ")) - 1
-    if 0 <= num < len(tasks):
-        tasks[num]["done"] = True
-        save_tasks(tasks)
-        print("Task marked as done!\n")
+t = int(input("Enter time in seconds: "))
+
+while t:
+    mins, secs = divmod(t, 60)
+    timer = f"{mins:02d}:{secs:02d}"
+    print(timer, end="\r")
+    time.sleep(1)
+    t -= 1
+
+print("Time’s up! ⏰")
+
 
 def main():
     while True:
@@ -139,19 +143,19 @@ def main():
         else:
             print("Invalid choice.\n")
 
-if __name__ == "__main__":
-    main()
+import turtle
+colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+t = turtle.Turtle()
+t.speed(0)
 
-csv_file.close()
+for i in range(360):
+    t.color(colors[i % 6])
+    t.width(i / 100 + 1)
+    t.forward(i)
+    t.left(59)
 
-import random
+turtle.done()
 
-def roll_dice(num_dice=3):
-    rolls = [random.randint(1, 6) for _ in range(num_dice)]
-    return rolls, sum(rolls)
-
-results, total = roll_dice()
-print("🎲 Rolls:", results, "| Total:", total)
 
 
 
