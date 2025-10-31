@@ -108,53 +108,42 @@ def view_tasks():
     if not tasks:
         print("No tasks yet.\n")
         return
-    for i, t in enumerate(tasks, 1):
-        status = "✅" if t["done"] else "❌"
-        print(f"{i}. {t['task']} [{status}]")
-    print()
-import time
+def add(a, b):
+    return a + b
 
-t = int(input("Enter time in seconds: "))
+def subtract(a, b):
+    return a - b
 
-while t:
-    mins, secs = divmod(t, 60)
-    timer = f"{mins:02d}:{secs:02d}"
-    print(timer, end="\r")
-    time.sleep(1)
-    t -= 1
+def multiply(a, b):
+    return a * b
 
-print("Time’s up! ⏰")
+def divide(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Cannot divide by zero"
 
+while True:
+    print("\n--- CALCULATOR ---")
+    print("1. Add\n2. Subtract\n3. Multiply\n4. Divide\n5. Exit")
+    choice = input("Enter choice: ")
 
-def main():
-    while True:
-        print("1. Add Task\n2. View Tasks\n3. Mark Done\n4. Exit")
-        choice = input("Choose: ")
+    if choice in ["1", "2", "3", "4"]:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
 
         if choice == "1":
-            add_task()
+            print("Result:", add(num1, num2))
         elif choice == "2":
-            view_tasks()
+            print("Result:", subtract(num1, num2))
         elif choice == "3":
-            mark_done()
+            print("Result:", multiply(num1, num2))
         elif choice == "4":
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice.\n")
-
-import turtle
-colors = ["red", "orange", "yellow", "green", "blue", "purple"]
-t = turtle.Turtle()
-t.speed(0)
-
-for i in range(360):
-    t.color(colors[i % 6])
-    t.width(i / 100 + 1)
-    t.forward(i)
-    t.left(59)
-
-turtle.done()
+            print("Result:", divide(num1, num2))
+    elif choice == "5":
+        break
+    else:
+        print("Invalid choice!")
 
 
 
