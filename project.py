@@ -1,3 +1,17 @@
+from netmiko import ConnectHandler
+
+device = {
+    "device_type": "cisco_ios",
+    "host": "192.168.1.1",
+    "username": "admin",
+    "password": "cisco"
+}
+
+connection = ConnectHandler(**device)
+ping_result = connection.send_command("ping 8.8.8.8 repeat 5")
+print(ping_result)
+connection.disconnect()
+
 import requests
 import xml.etree.ElementTree as ET
 import csv
@@ -144,6 +158,7 @@ while True:
         break
     else:
         print("Invalid choice!")
+
 
 
 
