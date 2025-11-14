@@ -1,31 +1,37 @@
-from netmiko import ConnectHandler
+def intro():
+    print("Welcome, traveler! You wake up in a dark forest...")
+    choice = input("Do you (1) explore or (2) stay still? ")
+    if choice == "1":
+        explore()
+    else:
+        stay_put()
 
-device = {
-    "device_type": "cisco_ios",
-    "host": "192.168.1.1",
-    "username": "admin",
-    "password": "cisco"
-}
+def explore():
+    print("You find a path leading to a village.")
+    choice = input("Do you (1) go to the village or (2) follow the river? ")
+    if choice == "1":
+        village()
+    else:
+        river()
 
-connection = ConnectHandler(**device)
-ping_result = connection.send_command("ping 8.8.8.8 repeat 5")
-print(ping_result)
-connection.disconnect()
+def stay_put():
+    print("You wait... Hours pass, and you hear wolves.")
+    print("Game Over — eaten by wolves 🐺")
 
-import requests
-import xml.etree.ElementTree as ET
-import csv
+def village():
+    print("You arrive at a small village. The villagers welcome you.")
+    print("You’re safe! 🎉")
 
-from requests_ntlm import HttpNtlmAuth
+def river():
+    print("You follow the river and find a bridge guarded by a troll!")
+    choice = input("Do you (1) fight or (2) run away? ")
+    if choice == "1":
+        print("You fight bravely but lose. Game Over 💀")
+    else:
+        print("You escape safely into the forest. You survive another day.")
 
-schema XML microsoft 
-ns0 = "http://www.w3.org/2005/Atom"
-ns1 = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
-ns2 = "http://schemas.microsoft.com/ado/2007/08/dataservices"
+intro()
 
-Create csv file 
-csv_file = open('file_name_csv.csv', 'w', newline = '', encoding='ansi')
-csvwriter = csv.writer(csv_file)
 
 col_names = ['Col_1', 'Col_2', 'Col_3', 'Col_n']
 csvwriter.writerow(col_names)
@@ -158,6 +164,7 @@ while True:
         break
     else:
         print("Invalid choice!")
+
 
 
 
