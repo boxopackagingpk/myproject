@@ -1,87 +1,22 @@
-def intro():
-    print("Welcome, traveler! You wake up in a dark forest...")
-    choice = input("Do you (1) explore or (2) stay still? ")
-    if choice == "1":
-        explore()
-    else:
-        stay_put()
+from netmiko import ConnectHandler
 
-def explore():
-    print("You find a path leading to a village.")
-    choice = input("Do you (1) go to the village or (2) follow the river? ")
-    if choice == "1":
-        village()
-    else:
-        river()
+device = {
+    "device_type": "cisco_ios",
+    "host": "192.168.1.1",
+    "username": "admin",
+    "password": "password"
+}
 
-def stay_put():
-    print("You wait... Hours pass, and you hear wolves.")
-    print("Game Over — eaten by wolves 🐺")
+conn = ConnectHandler(**device)
+conn.enable()
 
-def village():
-    print("You arrive at a small village. The villagers welcome you.")
-    print("You’re safe! 🎉")
+config = conn.send_command("show running-config")
 
-def river():
-    print("You follow the river and find a bridge guarded by a troll!")
-    choice = input("Do you (1) fight or (2) run away? ")
-    if choice == "1":
-        print("You fight bravely but lose. Game Over 💀")
-    else:
-        print("You escape safely into the forest. You survive another day.")
+with open("backup_config.txt", "w") as f:
+    f.write(config)
 
-intro()
-
-
-col_names = ['Col_1', 'Col_2', 'Col_3', 'Col_n']
-csvwriter.writerow(col_names)
-
-field_tag = ['dado_1', 'dado_2', 'dado_3', 'dado_n']
-
-
-response = requests.get("your_url", auth=HttpNtlmAuth('xxxx\\username','password'))
-tree =  ET.ElementTree(ET.fromstring(response.content))
-tree.write('file_name_xml.xml')
-root = tree.getroot()
-
-schema XML microsoft 
-ns0 = "http://www.w3.org/2005/Atom"
-ns1 = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
-ns2 = "http://schemas.microsoft.com/ado/2007/08/dataservices"
-schema XML microsoft 
-ns0 = "http://www.w3.org/2005/Atom"
-ns1 = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
-ns2 = "http://schemas.microsoft.com/ado/2007/08/dataservices"
-
-Create csv file 
-csv_file = open('file_name_csv.csv', 'w', newline = '', encoding='ansi')
-csvwriter = csv.writer(csv_file)
-
-col_names = ['Col_1', 'Col_2', 'Col_3', 'Col_n']
-csvwriter.writerow(col_names)
-
-field_tag = ['dado_1', 'dado_2', 'dado_3', 'dado_n']
-
-Create csv file 
-csv_file = open('file_name_csv.csv', 'w', newline = '', encoding='ansi')
-csvwriter = csv.writer(csv_file)
-
-col_names = ['Col_1', 'Col_2', 'Col_3', 'Col_n']
-csvwriter.writerow(col_names)
-
-field_tag = ['dado_1', 'dado_2', 'dado_3', 'dado_n']
-from tkinter import *
-from time import strftime
-
-root = Tk()
-root.title("Digital Clock")
-
-def time():
-    string = strftime('%H:%M:%S %p')
-    label.config(text=string)
-    label.after(1000, time)
-
-label = Label(root, font=('calibri', 50, 'bold'), background='black', foreground='cyan')
+conn.disconnect()
+ckground='black', foreground='cyan')
 label.pack(anchor='center')
 
 time()
@@ -164,6 +99,7 @@ while True:
         break
     else:
         print("Invalid choice!")
+
 
 
 
