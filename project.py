@@ -1,23 +1,7 @@
 import random
 import time
 
-# ---------------- LOGIN SYSTEM ----------------
 
-users = {}
-
-def register():
-    u = input("Create username: ")
-    p = input("Create password: ")
-    users[u] = p
-    print("✅ Registration successful")
-
-def login():
-    u = input("Username: ")
-    p = input("Password: ")
-    return users.get(u) == p
-
-
-# ---------------- GAME SYSTEM ----------------
 
 class Player:
     def __init__(self, name):
