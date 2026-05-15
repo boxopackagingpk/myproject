@@ -81,3 +81,35 @@ while True:
 
     elif ch == "3":
         break
+while True:
+    print("\n1.Register\n2.Login\n3.Exit")
+    ch = input("Choose: ")
+
+    if ch == "1":
+        register()
+
+    elif ch == "2":
+        if login():
+            print("🎉 Login successful! Starting game...")
+            game()
+        else:
+            print("❌ Wrong credentials")
+
+    elif ch == "3":
+        break
+        while True:
+    print("\n1.Register\n2.Login\n3.Exit")
+    ch = input("Choose: ")
+
+    if ch == "1":
+        register()
+
+    elif ch == "2":
+        if login():
+            print("🎉 Login successful! Starting game...")
+            game()
+        else:
+            print("❌ Wrong credentials")
+
+    elif ch == "3":
+        break
