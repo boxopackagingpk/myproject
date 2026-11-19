@@ -11,6 +11,15 @@ header.style.color = "white";
 header.style.padding = "20px";
 header.style.display = "flex";
 header.style.justifyContent = "space-between";
+header.style.background = "#1e293b";
+header.style.color = "white";
+header.style.padding = "20px";
+header.style.display = "flex";
+header.style.justifyContent = "space-between";header.style.background = "#1e293b";
+header.style.color = "white";
+header.style.padding = "20px";
+header.style.display = "flex";
+header.style.justifyContent = "space-between";
 
 const logo = document.createElement("h2");
 logo.innerText = "MyWebsite";
