@@ -8,11 +8,6 @@ cloudinary.v2.config({
 })
 
 
-app.listen(process.env.PORT, ()=>{
-    console.log(`server listening at port ${process.env.PORT}`)
-});
-
-
 import app from "./app.js";
 import cloudinary from "cloudinary"
 
