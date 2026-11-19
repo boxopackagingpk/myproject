@@ -15,9 +15,7 @@ quotes = [
     "Never stop learning."
 ]
 
-print("=" * 40)
-print("🎲 Random Generator")
-print("=" * 40)
+
 
 print(f"🎯 Lucky Number: {random.randint(1, 100)}")
 print(f"🔑 Random Password: {generate_password()}")
